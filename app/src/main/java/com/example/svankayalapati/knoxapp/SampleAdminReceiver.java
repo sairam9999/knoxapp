@@ -24,6 +24,11 @@ public class SampleAdminReceiver extends DeviceAdminReceiver {
     @Override
     public void onEnabled(Context context, Intent intent) {
         showToast(context, "Sample Device Admin: enabled");
+
+        MainActivity.klmManager.activateLicense("KLM06-HXHE8-BGH70-3O3K5-7Y3HF-2XUNP");
+
+        MainActivity.elm.activateLicense("6DEEF1797015B5478FF953C6DD9E6D03B52AB657A2F9AF2C827ECDC9A0E8A64BF0B9A6C503E1F37EE9F523BAE7F58102B50EFD82E379C33B0102294E8746F416");
+
     }
 
     @Override

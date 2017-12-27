@@ -9,23 +9,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.svankayalapati.knoxapp.MainActivity" >
 
-    <Button
-        android:id="@+id/btn2_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:enabled="false"
-        android:text="Toggle Camera" />
-
-    <Button
-        android:id="@+id/btn1_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@id/btn2_id"
-        android:text="Activate Admin" />
-
     <TextView
         android:id="@+id/log_id"
         android:layout_width="match_parent"
@@ -33,6 +16,6 @@
         android:textColor="#0000FF"
         android:scrollbars="vertical"
         android:paddingBottom="10dp"
-        android:layout_above="@id/btn2_id"/>
+        />
 
 </RelativeLayout>

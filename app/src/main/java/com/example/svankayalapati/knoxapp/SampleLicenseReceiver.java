@@ -24,25 +24,7 @@ public class SampleLicenseReceiver extends BroadcastReceiver {
             showToast(context, "License activation: " + result);
             showToast(context, "License activation: " + "error#"+errorCode);
 
-            RestrictionPolicy rp = MainActivity.edm.getRestrictionPolicy();
-
-            boolean cameraEnabled = rp.isCameraEnabled(false);
-
-            // Toggle camera functionality
-            try {
-                if(cameraEnabled) {
-                    rp.setCameraState(!cameraEnabled);
-                }
-                MainActivity.log("Set camera enabled to: " + !cameraEnabled);
-            } catch (SecurityException e) {
-                MainActivity.log("Exception: " + e);
-                MainActivity.log("Activating license.");
-                MainActivity.log("Have you remembered to change the demoELMKey in the source code?");
-                // This exception indicates that the ELM policy has not been activated, so we activate
-                // it now. Note that embedding the license in the code is unsafe and it is done here for
-                // demonstration purposes only.
-            }
-
+            MainActivity.applyRestrictions();
 
             // showToast(context, log);
         }

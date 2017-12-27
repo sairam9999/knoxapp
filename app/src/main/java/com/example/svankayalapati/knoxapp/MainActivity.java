@@ -3,6 +3,7 @@ package com.example.svankayalapati.knoxapp;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.KeyguardManager;
 import android.app.admin.DevicePolicyManager;
 import android.app.enterprise.EnterpriseDeviceManager;
 import android.app.enterprise.RestrictionPolicy;
@@ -54,6 +55,7 @@ public class MainActivity extends Activity {
     static EnterpriseLicenseManager elm;
     static  KnoxEnterpriseLicenseManager klmManager;
     private ComponentName mDeviceAdmin;
+    private KeyguardManager mKeyguardManager;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -73,6 +75,19 @@ public class MainActivity extends Activity {
                     break;
             }
         }
+
+        if (requestCode == 2) {
+            // Challenge completed, proceed with using cipher
+            if (resultCode == RESULT_OK) {
+                //if (tryEncrypt()) {
+                //  showPurchaseConfirmation();
+                //}
+            } else {
+                // The user canceled or didn’t complete the lock screen
+                // operation. Go to error/cancellation flow.
+                Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+            }
+        }
     };
 
     @Override
@@ -80,7 +95,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        mKeyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+        showAuthenticationScreen();
 
         klmManager=KnoxEnterpriseLicenseManager.getInstance(this);
         edm = new EnterpriseDeviceManager(this);
@@ -90,14 +106,59 @@ public class MainActivity extends Activity {
         logView.setMovementMethod(new ScrollingMovementMethod());
         mDeviceAdmin = new ComponentName(MainActivity.this, SampleAdminReceiver.class);
         dpm = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
-        processOne();
+        if(dpm.isAdminActive(mDeviceAdmin)==false) {
+            processOne();
+        }
+        else{
+
+            applyRestrictions();
+
+        }
 
 
     }
 
+    static void applyRestrictions() {
+
+        RestrictionPolicy rp = MainActivity.edm.getRestrictionPolicy();
+
+        boolean cameraEnabled = rp.isCameraEnabled(false);
+
+        // Toggle camera functionality
+        try {
+            if (cameraEnabled) {
+                rp.setCameraState(!cameraEnabled);
+                MainActivity.log("Set camera enabled to: " + !cameraEnabled);
+            }
+
+
+
+
+        } catch (SecurityException e) {
+            MainActivity.log("Exception: " + e);
+            MainActivity.log("Activating license.");
+            MainActivity.log("Have you remembered to change the demoELMKey in the source code?");
+            // This exception indicates that the ELM policy has not been activated, so we activate
+            // it now. Note that embedding the license in the code is unsafe and it is done here for
+            // demonstration purposes only.
+        }
+    }
+
+
+    private void showAuthenticationScreen() {
+        // Create the Confirm Credentials screen. You can customize the title and description. Or
+        // we will provide a generic one for you if you leave it null
+        Intent intent = mKeyguardManager.createConfirmDeviceCredentialIntent(null, null);
+        if (intent != null) {
+            startActivityForResult(intent, 2);
+        }
+    }
+
+
+
     @Override
     protected void onDestroy() {
-        super.onDestroy();
+   /*     super.onDestroy();
         log("inside on destroy");
 
         RestrictionPolicy rp = edm.getRestrictionPolicy();
@@ -117,7 +178,7 @@ public class MainActivity extends Activity {
             // This exception indicates that the ELM policy has not been activated, so we activate
             // it now. Note that embedding the license in the code is unsafe and it is done here for
             // demonstration purposes only.
-        }
+        }*/
 
 
     }

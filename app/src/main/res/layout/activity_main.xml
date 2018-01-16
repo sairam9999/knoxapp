@@ -13,9 +13,51 @@
         android:id="@+id/log_id"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textColor="#0000FF"
-        android:scrollbars="vertical"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:paddingBottom="10dp"
-        />
+        android:scrollbars="vertical"
+        android:textColor="#0000FF" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="11dp"
+        android:layout_marginEnd="11dp"
+        android:text="Close the App" />
+
+
+
+    <Button
+        android:id="@+id/buttonKLM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button"
+        android:layout_alignStart="@+id/buttonELM"
+        android:layout_marginBottom="98dp"
+        android:text="Validate KLM License" />
+
+    <Button
+        android:id="@+id/buttonELM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonKLM"
+        android:layout_alignStart="@+id/button"
+        android:layout_marginBottom="21dp"
+        android:text="Validate ELM License" />
+
+    <Button
+        android:id="@+id/buttonContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button"
+        android:layout_alignEnd="@+id/button"
+        android:layout_marginBottom="25dp"
+        android:layout_marginEnd="17dp"
+        android:text="Create Container" />
+
 
 </RelativeLayout>

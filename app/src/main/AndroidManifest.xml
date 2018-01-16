@@ -2,9 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.svankayalapati.knoxapp">
 
-    <uses-permission android:name="android.permission.sec.MDM_HW_CONTROL" />
 
+    <uses-permission android:name="android.permission.sec.MDM_HW_CONTROL" />
+    <uses-permission android:name="android.knox.permission.KNOX_HW_CONTROL" />
     <uses-permission android:name="android.permission.sec.MDM_LICENSE_LOG" />
+    <uses-permission android:name="android.permission.sec.MDM_WIFI"/>
+    <uses-permission android:name="android.permission.sec.MDM_PHONE_RESTRICTION" />
+    <uses-permission android:name="android.permission.sec.MDM_LOCATION" />
+    <uses-permission android:name="android.permission.sec.MDM_ENTERPRISE_CONTAINER" />
+    <uses-permission android:name="android.permission.KNOX_CONTAINER" />
+
+
 
     <application
         android:allowBackup="true"
@@ -20,6 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <receiver
             android:name="com.example.svankayalapati.knoxapp.SampleAdminReceiver"
             android:description="@string/enterprise_device_admin_description"

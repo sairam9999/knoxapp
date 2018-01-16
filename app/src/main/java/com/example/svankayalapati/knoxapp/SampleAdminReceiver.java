@@ -1,12 +1,16 @@
 package com.example.svankayalapati.knoxapp;
 
 import android.app.admin.DeviceAdminReceiver;
+import android.app.enterprise.license.EnterpriseLicenseManager;
 import android.content.Context;
 import android.content.Intent;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.view.View;
+
+import com.sec.enterprise.knox.license.KnoxEnterpriseLicenseManager;
 
 /**
  * Example of a do-nothing admin class. When enabled, it lets you control
@@ -21,15 +25,18 @@ public class SampleAdminReceiver extends DeviceAdminReceiver {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
     }
 
+
     @Override
     public void onEnabled(Context context, Intent intent) {
         showToast(context, "Sample Device Admin: enabled");
 
-        MainActivity.klmManager.activateLicense("KLM06-HXHE8-BGH70-3O3K5-7Y3HF-2XUNP");
+       // MainActivity.klmManager.activateLicense("KLM06-HXHE8-BGH70-3O3K5-7Y3HF-2XUNP");
 
-        MainActivity.elm.activateLicense("6DEEF1797015B5478FF953C6DD9E6D03B52AB657A2F9AF2C827ECDC9A0E8A64BF0B9A6C503E1F37EE9F523BAE7F58102B50EFD82E379C33B0102294E8746F416");
+        //MainActivity.elm.activateLicense("6DEEF1797015B5478FF953C6DD9E6D03B52AB657A2F9AF2C827ECDC9A0E8A64BF0B9A6C503E1F37EE9F523BAE7F58102B50EFD82E379C33B0102294E8746F416");
+
 
     }
+
 
     @Override
     public CharSequence onDisableRequested(Context context, Intent intent) {
@@ -40,6 +47,8 @@ public class SampleAdminReceiver extends DeviceAdminReceiver {
     public void onDisabled(Context context, Intent intent) {
         showToast(context, "Sample Device Admin: disabled");
     }
+
+
 
     @Override
     public void onPasswordChanged(Context context, Intent intent) {

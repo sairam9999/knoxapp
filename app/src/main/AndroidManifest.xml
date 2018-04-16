@@ -3,6 +3,7 @@
     package="com.example.svankayalapati.knoxapp">
 
 
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.sec.MDM_HW_CONTROL" />
     <uses-permission android:name="android.knox.permission.KNOX_HW_CONTROL" />
     <uses-permission android:name="android.permission.sec.MDM_LICENSE_LOG" />
@@ -11,7 +12,13 @@
     <uses-permission android:name="android.permission.sec.MDM_LOCATION" />
     <uses-permission android:name="android.permission.sec.MDM_ENTERPRISE_CONTAINER" />
     <uses-permission android:name="android.permission.KNOX_CONTAINER" />
-
+    <uses-permission android:name="android.permission.sec.MDM_KIOSK_MODE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.MDM_BLUETOOTH_SECUREMODE"/>
+    <uses-permission android:name="android.permission.sec.MDM_APP_MGMT"/>
+    <uses-permission android:name="android.permission.MODIFY_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
 
     <application
@@ -42,12 +49,20 @@
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
             </intent-filter>
         </receiver>
+
         <receiver
             android:name="com.example.svankayalapati.knoxapp.SampleLicenseReceiver"
             android:enabled="true" >
             <intent-filter>
                 <action android:name="edm.intent.action.license.status" />
                 <action android:name="edm.intent.action.knox_license.status" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name="com.example.svankayalapati.knoxapp.ContainerCreationStatusReceiver" >
+            <intent-filter>
+                <action android:name="com.samsung.knox.container.creation.status" />
+                <action android:name="com.samsung.enterprise.container_state_changed" />
             </intent-filter>
         </receiver>
 

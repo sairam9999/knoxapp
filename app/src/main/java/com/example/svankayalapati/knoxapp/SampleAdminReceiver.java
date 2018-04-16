@@ -12,10 +12,6 @@ import android.view.View;
 
 import com.sec.enterprise.knox.license.KnoxEnterpriseLicenseManager;
 
-/**
- * Example of a do-nothing admin class. When enabled, it lets you control
- * some of its policy and reports when there is interesting activity.
- */
 
 public class SampleAdminReceiver extends DeviceAdminReceiver {
 
@@ -30,9 +26,9 @@ public class SampleAdminReceiver extends DeviceAdminReceiver {
     public void onEnabled(Context context, Intent intent) {
         showToast(context, "Sample Device Admin: enabled");
 
-       // MainActivity.klmManager.activateLicense("KLM06-HXHE8-BGH70-3O3K5-7Y3HF-2XUNP");
+       // MainActivity.klmManager.activateLicense("KLM03-64XNS-ZT6V9-LFMHZ-4MJ9E-9R6JA");
 
-        //MainActivity.elm.activateLicense("6DEEF1797015B5478FF953C6DD9E6D03B52AB657A2F9AF2C827ECDC9A0E8A64BF0B9A6C503E1F37EE9F523BAE7F58102B50EFD82E379C33B0102294E8746F416");
+        //MainActivity.elm.activateLicense("4A8C019C25B9D64343EA4CEF8A141CD7D419169224B65D676A1E4DD664DDB76BDECF2B374D63B090298449459A2B8DEEC46CC7D553A68ED4AB78AB8F6E353646");
 
 
     }

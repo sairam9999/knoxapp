@@ -6,19 +6,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-
+import android.widget.Toast;
 import com.sec.enterprise.knox.EnterpriseKnoxManager;
 import com.sec.enterprise.knox.container.KnoxContainerManager;
 import com.sec.enterprise.knox.container.RCPPolicy;
 
-//import com.insulet.myblue.pdm.knox.SAConstants;
-//import com.example.svankayalapati.samplecontainerlwc.controller.Controller;
-//import com.insulet.myblue.pdm.knox.SACodeUtils;
 
-//This BroadcastReceiver is invoked when the container status is changed.
+
 
 public class ContainerCreationStatusReceiver extends BroadcastReceiver {
-
+	//KnoxContainerManager kmcm;
 	static int requestId;
 
 	public ContainerCreationStatusReceiver() {
@@ -34,12 +31,19 @@ public class ContainerCreationStatusReceiver extends BroadcastReceiver {
 	
 	public static final String TAG = "Sairam";
 
-
 	@Override
 	public void onReceive(Context ctxt, Intent intent) {
 		Bundle bundle = null;
 
 		System.out.println("ContainerCreationStatusReceiver.onReceive()");
+
+		//sample test package name
+		String testpackageName = "com.example.svankayalapati.knoxapp";
+		// When you create container successfully, containerID will be returned via intent.
+		// Use this containerID in below API.
+		//EnterpriseKnoxManager ekm = EnterpriseKnoxManager.getInstance();
+
+
 
 		try {
 			int requestId = -1;
@@ -66,6 +70,8 @@ public class ContainerCreationStatusReceiver extends BroadcastReceiver {
 				// Get the container id
 				int containerId = bundle
 						.getInt(KnoxContainerManager.CONTAINER_ID);
+				//KnoxContainerManager kmcm = ekm.getKnoxContainerManager(MainActivity.ctx, containerId);
+				//ApplicationPolicy appPolicy = kmcm.getApplicationPolicy();
 
 				EnterpriseKnoxManager ekm = EnterpriseKnoxManager.getInstance();
 				KnoxContainerManager kcm = ekm.getKnoxContainerManager(ctxt,
@@ -79,12 +85,15 @@ public class ContainerCreationStatusReceiver extends BroadcastReceiver {
 				// allowing move apps to container as an initial setting
 				rcpPolicy.allowMoveAppsToContainer(true);
 				// installing Camera app in container as an initial setting
-				appPolicy.installApplication("com.sec.android.app.camera");
+				boolean ret = appPolicy.installApplication("com.example.svankayalapati.knoxapp");
+				MainActivity.log("Moved App to Container" +ret);
 				Log.i(TAG,
 						"in On Receive of ContainerCreationStatusReceiver cont id "
 								+ bundle.getInt(KnoxContainerManager.CONTAINER_ID));
+				rcpPolicy.isMoveAppsToContainerAllowed();
 				
-			}			
+			}
+
 			// if the container is successfully created
 			if (statusCode >= 0) {
 				Log.d("Sairam", "Container Successfully Created");
@@ -107,8 +116,16 @@ public class ContainerCreationStatusReceiver extends BroadcastReceiver {
 				Log.e("Sairam", ".CONTAINER_CREATION_FAILED" + statusCode);
 				//Controller.showToast(SACodeUtils.getMessage(statusCode, ctxt));
 			}
+			//boolean result = appPolicy.installApplication(testpackageName);
+			/*if (true == result) {
+				Log.d(TAG, "Installing an application package has been successful!");
+			} else {
+				Log.w(TAG, "Installing an application package has failed.");
+			}*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+
 	}
 }

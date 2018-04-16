@@ -27,9 +27,6 @@ public class SampleLicenseReceiver extends BroadcastReceiver {
             showToast(context, "License activation: " + result);
             showToast(context, "License activation: " + "error#"+errorCode);
 
-
-
-
            // MainActivity.applyRestrictions();
 
             // showToast(context, log);
@@ -41,6 +38,7 @@ public class SampleLicenseReceiver extends BroadcastReceiver {
                 System.out.println("action == null");
                 return;
             }
+
             // If ELM activation result intent is obtained
             else if (action.equals(EnterpriseLicenseManager.ACTION_LICENSE_STATUS)) {
                 System.out.println("action == ELM ACTION_LICENSE_STATUS");
@@ -70,6 +68,7 @@ public class SampleLicenseReceiver extends BroadcastReceiver {
                     Toast.makeText(context, "ELM License Activation Failed", Toast.LENGTH_SHORT).show();
                 }
             }
+
             // If KLM activation result intent is obtained
             else if (action.equals(KnoxEnterpriseLicenseManager.ACTION_LICENSE_STATUS)) {
                 System.out.println("action == KLM ACTION_LICENSE_STATUS");
@@ -101,24 +100,25 @@ public class SampleLicenseReceiver extends BroadcastReceiver {
                 else {
                     Toast.makeText(context, "KLM License Activation Failed", Toast.LENGTH_SHORT).show();
 
-
                     //String msg = SACodeUtils.getMessage(errorCode,context);
 
                    /* if(msg != null && !msg.equalsIgnoreCase(""))
                         SAUIHelper.showToast(context,msg);
                     else{
-
-                                             //  SAUIHelper.showToast(context,context.getString(R.string.err_unknown));
+                         //  SAUIHelper.showToast(context,context.getString(R.string.err_unknown));
                     }*/
                 }
             }
 
+           // Utils ui = new Utils(MainActivity.edm, null);
+           MainActivity.applyRestrictions();
+
+
           /*  if (ELMActivated && KLMActivated) {
                 Log.d("Sairam", "ELM and KLM Activated Successfully");
                 Utils ui = new Utils(MainActivity.edm, null);
-
                 // ui.applyRestrictions();
-                // ui.createContainer();
+                // ui.r();
             }*/
 
         }

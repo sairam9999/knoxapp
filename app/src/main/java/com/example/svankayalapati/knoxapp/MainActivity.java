@@ -76,7 +76,7 @@ public class MainActivity extends Activity {
     // Android apps can be decompiled, exposing your unique license key.
     // Normally you will send the ELM License key to the app over an encrypted connection
     // from your solution's cloud service.
-    private final static String demoELMKey = "4A8C019C25B9D64343EA4CEF8A141CD7D419169224B65D676A1E4DD664DDB76BDECF2B374D63B090298449459A2B8DEEC46CC7D553A68ED4AB78AB8F6E353646";
+    private final static String demoELMKey = "Your ELM Key goes here";
     static DevicePolicyManager dpm;
     static EnterpriseDeviceManager edm;
     static EnterpriseLicenseManager elm;
@@ -270,8 +270,8 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
 
-                activateELMWithAdminEnabled("4A8C019C25B9D64343EA4CEF8A141CD7D419169224B65D676A1E4DD664DDB76BDECF2B374D63B090298449459A2B8DEEC46CC7D553A68ED4AB78AB8F6E353646");
-               // MainActivity.elm.activateLicense("4A8C019C25B9D64343EA4CEF8A141CD7D419169224B65D676A1E4DD664DDB76BDECF2B374D63B090298449459A2B8DEEC46CC7D553A68ED4AB78AB8F6E353646");
+                activateELMWithAdminEnabled("Your ELM Key goes here");
+               // MainActivity.elm.activateLicense("Your ELM Key goes here");
 
             }
         });
@@ -307,8 +307,8 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
 
-               // activateKLMWithAdminEnabled("KLM03-64XNS-ZT6V9-LFMHZ-4MJ9E-9R6JA");
-                activateKLMWithAdminEnabled("KLM03-64XNS-ZT6V9-LFMHZ-4MJ9E-9R6JA");
+               // activateKLMWithAdminEnabled("Your KLM Key goes here");
+                activateKLMWithAdminEnabled("Your KLM Key goes here");
 
             }
         });
@@ -328,8 +328,8 @@ public class MainActivity extends Activity {
             processOne();
         } else {
 
-            activateELMWithAdminEnabled("4A8C019C25B9D64343EA4CEF8A141CD7D419169224B65D676A1E4DD664DDB76BDECF2B374D63B090298449459A2B8DEEC46CC7D553A68ED4AB78AB8F6E353646");
-            activateKLMWithAdminEnabled("KLM03-64XNS-ZT6V9-LFMHZ-4MJ9E-9R6JA");
+            activateELMWithAdminEnabled("Your ELM Key goes here");
+            activateKLMWithAdminEnabled("Your KLM Key goes here");
 
             applyRestrictions();
 //            createContainer();
@@ -612,7 +612,6 @@ public class MainActivity extends Activity {
 
            // ret = prp.allowIncomingSms(true)
                   // MainActivity.log("allowIncomingSMS: " + ret);
-
                   if (prp.blockSmsWithStorage(false)) {
                       MainActivity.log("blockSmsWithStorage: " + ret);
                   } else {
